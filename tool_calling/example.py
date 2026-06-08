@@ -1,27 +1,10 @@
 from ollama import ChatResponse, chat
 
 from config import OLLAMA_MODEL
+from tool_calling.constants import MAX_ITERATIONS
+from tool_calling.prompt import SYSTEM_PROMPT
 from tool_calling.schemas import WEATHER_TOOL_SCHEMA, WeatherToolArguments
 from tool_calling.tools import get_current_weather
-
-MAX_ITERATIONS = 3
-
-SYSTEM_PROMPT = """
-You are a weather-focused assistant.
-
-Your job is to help only with weather-related requests.
-
-Use the available tool whenever answering accurately requires live, external,
-or location-specific weather data.
-
-Answer directly when the request can be answered from general weather knowledge.
-
-If the request is unrelated to weather, briefly say you only help with weather.
-
-Do not invent current, recent, forecast, or location-specific weather data.
-If you cannot answer accurately with the available tool, explain the limitation
-briefly and naturally.
-"""
 
 
 def run_tool_calling_example() -> None:
