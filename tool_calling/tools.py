@@ -1,6 +1,6 @@
 import httpx
 
-from schemas import (
+from tool_calling.schemas import (
     CurrentWeather,
     LocationCoordinates,
     WeatherResult,
