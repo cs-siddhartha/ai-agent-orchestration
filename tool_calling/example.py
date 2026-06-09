@@ -1,6 +1,4 @@
-from ollama import ChatResponse, chat
-
-from config import OLLAMA_MODEL
+from llm import chat_with_tools
 from tool_calling.constants import MAX_ITERATIONS
 from tool_calling.prompt import SYSTEM_PROMPT
 from tool_calling.schemas import WEATHER_TOOL_SCHEMA, WeatherToolArguments
@@ -19,9 +17,8 @@ def run_tool_calling_example() -> None:
 
     for iteration in range(1, MAX_ITERATIONS + 1):
         print(f"Agent iteration {iteration}/{MAX_ITERATIONS}")
-        print(f"Calling model: {OLLAMA_MODEL}")
-        response: ChatResponse = chat(
-            model=OLLAMA_MODEL,
+        print("Calling configured model.")
+        response = chat_with_tools(
             messages=messages,
             tools=[WEATHER_TOOL_SCHEMA],
         )
